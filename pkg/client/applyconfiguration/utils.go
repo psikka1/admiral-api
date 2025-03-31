@@ -83,6 +83,8 @@ func ForKind(kind schema.GroupVersionKind) interface{} {
 		return &admiralv1.ShardStatusApplyConfiguration{}
 	case v1.SchemeGroupVersion.WithKind("ShardStatusCondition"):
 		return &admiralv1.ShardStatusConditionApplyConfiguration{}
+	case v1.SchemeGroupVersion.WithKind("SlowStartConfig"):
+		return &admiralv1.SlowStartConfigApplyConfiguration{}
 	case v1.SchemeGroupVersion.WithKind("Target"):
 		return &admiralv1.TargetApplyConfiguration{}
 	case v1.SchemeGroupVersion.WithKind("TargetGroup"):

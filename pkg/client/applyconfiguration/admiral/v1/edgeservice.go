@@ -25,11 +25,12 @@ import (
 // EdgeServiceApplyConfiguration represents an declarative configuration of the EdgeService type for use
 // with apply.
 type EdgeServiceApplyConfiguration struct {
-	DynamicRouting []*v1.DynamicRouting `json:"dynamicRouting,omitempty"`
-	Filters        []*v1.Filter         `json:"filters,omitempty"`
-	Routes         []*v1.Route          `json:"routes,omitempty"`
-	Targets        []*v1.Target         `json:"targets,omitempty"`
-	TargetGroups   []*v1.TargetGroup    `json:"targetGroups,omitempty"`
+	DynamicRouting  []*v1.DynamicRouting  `json:"dynamicRouting,omitempty"`
+	Filters         []*v1.Filter          `json:"filters,omitempty"`
+	Routes          []*v1.Route           `json:"routes,omitempty"`
+	Targets         []*v1.Target          `json:"targets,omitempty"`
+	TargetGroups    []*v1.TargetGroup     `json:"targetGroups,omitempty"`
+	SlowStartConfig []*v1.SlowStartConfig `json:"slowStartConfig,omitempty"`
 }
 
 // EdgeServiceApplyConfiguration constructs an declarative configuration of the EdgeService type for use with
@@ -99,6 +100,19 @@ func (b *EdgeServiceApplyConfiguration) WithTargetGroups(values ...**v1.TargetGr
 			panic("nil value passed to WithTargetGroups")
 		}
 		b.TargetGroups = append(b.TargetGroups, *values[i])
+	}
+	return b
+}
+
+// WithSlowStartConfig adds the given value to the SlowStartConfig field in the declarative configuration
+// and returns the receiver, so that objects can be build by chaining "With" function invocations.
+// If called multiple times, values provided by each call will be appended to the SlowStartConfig field.
+func (b *EdgeServiceApplyConfiguration) WithSlowStartConfig(values ...**v1.SlowStartConfig) *EdgeServiceApplyConfiguration {
+	for i := range values {
+		if values[i] == nil {
+			panic("nil value passed to WithSlowStartConfig")
+		}
+		b.SlowStartConfig = append(b.SlowStartConfig, *values[i])
 	}
 	return b
 }
